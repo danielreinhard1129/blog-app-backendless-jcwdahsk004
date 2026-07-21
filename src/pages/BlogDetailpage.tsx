@@ -2,10 +2,10 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
-import { useParams } from "react-router";
+// import { useParams } from "react-router";
 
 function BlogDetailpage() {
-  const params = useParams();
+  //   const params = useParams();
 
   return (
     <div>
@@ -61,7 +61,7 @@ function BlogDetailpage() {
           <img
             // src={post.thumbnail}
             // alt={post.title}
-            className="aspect-[16/9] w-full object-cover"
+            className="aspect-video w-full object-cover"
           />
         </div>
       </div>
