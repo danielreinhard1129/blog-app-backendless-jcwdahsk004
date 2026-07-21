@@ -2,10 +2,11 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import "./index.css";
+import BlogDetailpage from "./pages/BlogDetailpage";
+import CreateBlogpage from "./pages/CreateBlogpage";
 import Homepage from "./pages/Homepage";
 import Loginpage from "./pages/Loginpage";
 import Register from "./pages/Register";
-import BlogDetailpage from "./pages/BlogDetailpage";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: "/blogs/:id",
     element: <BlogDetailpage />,
+  },
+  {
+    path: "/create",
+    element: <CreateBlogpage />,
   },
 ]);
 
