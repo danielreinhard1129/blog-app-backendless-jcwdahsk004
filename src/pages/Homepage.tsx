@@ -3,10 +3,45 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { blogPosts } from "@/data/blog";
+import axios from "axios";
 import { Sparkles } from "lucide-react";
+import { useEffect, useState } from "react";
+
+export interface Blog {
+  thumbnail: string;
+  author: string;
+  created: number;
+  ___class: string;
+  description: string;
+  category: string;
+  ownerId: string | null;
+  title: string;
+  updated: number;
+  objectId: string;
+  content: string;
+}
 
 function Homepage() {
+  const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [isPending, setIsPending] = useState<boolean>(true);
+
+  const getBlogs = async () => {
+    try {
+      const response = await axios.get(
+        "https://cleverfloor-us.backendless.app/api/data/Blogs",
+      );
+      setBlogs(response.data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsPending(false);
+    }
+  };
+
+  useEffect(() => {
+    getBlogs();
+  }, []);
+
   return (
     <div className="flex min-h-screen flex-col bg-white">
       <Navbar />
@@ -47,11 +82,19 @@ function Homepage() {
           <h2 className="text-xl font-bold text-slate-900">Latest articles</h2>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {blogPosts.map((post) => (
-            <BlogCard key={post.id} post={post} />
-          ))}
-        </div>
+        {isPending && (
+          <div className="h-60 flex justify-center items-center">
+            <p>Loading...</p>
+          </div>
+        )}
+
+        {!isPending && !!blogs.length && (
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {blogs.map((post) => (
+              <BlogCard key={post.objectId} post={post} />
+            ))}
+          </div>
+        )}
       </section>
 
       {/* Footer */}
