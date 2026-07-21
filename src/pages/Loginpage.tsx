@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Feather } from "lucide-react";
+import { Link } from "react-router";
 
 function Loginpage() {
   return (
@@ -13,14 +14,14 @@ function Loginpage() {
 
       <div className="w-full max-w-md animate-fade-up">
         {/* Logo */}
-        <button className="mx-auto flex items-center gap-2">
+        <Link to="/" className="mx-auto flex items-center gap-2 justify-center">
           <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-sky-500 text-white shadow-lg shadow-sky-500/40">
             <Feather className="h-6 w-6" />
           </span>
           <span className="text-xl font-bold tracking-tight text-slate-900">
             Inkwell
           </span>
-        </button>
+        </Link>
 
         <div className="mt-8 rounded-2xl border border-slate-200/80 bg-white p-8 shadow-xl shadow-slate-200/50">
           <div className="text-center">
@@ -83,13 +84,6 @@ function Loginpage() {
             </Button>
           </form>
         </div>
-
-        <p className="mt-6 text-center text-sm text-slate-500">
-          Don't have an account?{" "}
-          <button className="font-semibold text-sky-600 transition-colors hover:text-sky-700">
-            Sign up free
-          </button>
-        </p>
       </div>
     </div>
   );
