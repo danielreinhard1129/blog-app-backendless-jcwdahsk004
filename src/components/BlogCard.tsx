@@ -1,10 +1,10 @@
-import type { BlogPost } from "@/data/blog";
-import { Card } from "./ui/card";
+import type { Blog } from "@/pages/Homepage";
+import { ArrowRight } from "lucide-react";
 import { Badge } from "./ui/badge";
-import { ArrowRight, Clock } from "lucide-react";
+import { Card } from "./ui/card";
 
 interface BlogCardProps {
-  post: BlogPost;
+  post: Blog;
 }
 
 function BlogCard({ post }: BlogCardProps) {
@@ -18,20 +18,14 @@ function BlogCard({ post }: BlogCardProps) {
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
         <div className="absolute left-4 top-4">
-          <Badge className="backdrop-blur-md bg-white/90">
-            {post.category}
-          </Badge>
+          <Badge>{post.category}</Badge>
         </div>
       </button>
 
       <div className="flex flex-1 flex-col p-5">
         <div className="flex items-center gap-2 text-xs text-slate-400">
-          <span>{post.date}</span>
+          <span>{new Date(post.created).toDateString()}</span>
           <span className="h-1 w-1 rounded-full bg-slate-300" />
-          <span className="flex items-center gap-1">
-            <Clock className="h-3 w-3" />
-            {post.readTime}
-          </span>
         </div>
 
         <button className="mt-2 text-left">
@@ -46,12 +40,6 @@ function BlogCard({ post }: BlogCardProps) {
 
         <div className="mt-5 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <img
-              src={post.authorAvatar}
-              alt={post.author}
-              loading="lazy"
-              className="h-8 w-8 rounded-full object-cover ring-2 ring-slate-100"
-            />
             <span className="text-sm font-medium text-slate-700">
               {post.author}
             </span>
